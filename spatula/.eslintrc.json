@@ -25,12 +25,22 @@
             "unix"
         ],
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "comma-dangle": [
+            "warn",
+            "always-multiline"
+        ],
+        "func-style": [
+            "error",
+            "expression"
+        ],
+        "no-var": "error",
+        "object-curly-spacing": ["warn", "always"]
     }
 }
