@@ -1,23 +1,23 @@
+import { Box, Paper, Typography } from '@mui/material'
 import './App.css'
+import { trpc } from './trpc'
 
-function App() {
+const App = () => {
+  const { data } = trpc.getWeatherReport.useQuery()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
-}
+    <Paper>
+      <Box>
+        <Typography>
+          Current temperature: {data?.temperature}
+        </Typography>
+      </Box>
+      <Box>
+        <Typography>
+          Current humidity: {data?.humidity}
+        </Typography>
+      </Box>
+    </Paper>
+  )}
 
 export default App
