@@ -3,11 +3,12 @@ import * as trpcExpress from '@trpc/server/adapters/express'
 import { appRouter } from './router'
 import { env } from 'process'
 import dotenv from 'dotenv'
+import path from 'path'
 import cors from 'cors'
 
 dotenv.config()
 
-const PORT = env.SPATULA_PORT
+const { PLATE_BUILD_PATH, SPATULA_PORT } = env
 
 const app = express()
 
@@ -23,6 +24,14 @@ const corsOpts = {
   ],
 }
 app.use(cors(corsOpts))
+
+/* serve the Plate app  *i n c e p t i o n* */
+if (PLATE_BUILD_PATH != null) {
+  app.use(express.static(PLATE_BUILD_PATH))
+  app.get('/', (_req, res) => res.sendFile(path.join(PLATE_BUILD_PATH, 'index.html')))
+}
+
+/* tRPC endpoint */
 app.use(
   '/trpc',
   trpcExpress.createExpressMiddleware({
@@ -30,5 +39,5 @@ app.use(
   }),
 )
 
-app.listen(PORT)
-console.log(`listening on ${PORT}`)
+app.listen(SPATULA_PORT)
+console.log(`listening on ${SPATULA_PORT}`)
