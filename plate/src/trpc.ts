@@ -1,5 +1,5 @@
 
-import type { AppRouter } from '../../spatula/src/router'
+import type { AppRouter } from '../../spatula/src'
 import { createTRPCReact } from '@trpc/react-query'
 import { httpBatchLink } from '@trpc/client'
 

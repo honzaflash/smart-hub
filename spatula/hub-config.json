@@ -1,0 +1,14 @@
+{
+  "spatulaPort": 3141,
+  "plateBuildPath": "/home/hans/prog/smart-hub/plate/build",
+  "modules": [
+    {
+      "name": "Weather",
+      "endpoint": "getWeatherReport",
+      "dataSource": {
+        "type": "file",
+        "path": "../mock-data-sources/weather"
+      }
+    }
+  ]
+}
